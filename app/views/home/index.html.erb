@@ -1,2 +1,47 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= render 'home/header'%>
+<% url_external_img = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" %>
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Buscador de livros</h1>
+            <p class="lead text-muted">Sistema simples de busca de livros e de seus autores .</p>
+        </div>
+    </div>
+</section>
+
+<!-- Campo de busca dos livros -->
+<nav class="navbar navbar-light justify-content-center mt-4">
+    <form class="form-inline">
+        <div class="input-group mb-3">
+            <input class="form-control form-control-lg mr-sm-2" type="search"
+                placeholder="Pesquise o nome do livro ou autor" aria-label="Search" id="search"
+                aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+    </form>
+</nav>
+
+<!-- Listagem de livros -->
+<div class="album py-5 bg-light">
+    <div class="card-deck">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <% @books.each do |book| %>
+                <div class="col">
+                    <div class="card shadow-sm ">
+                        <%= book.image.present? ? image_tag(book.image)  : image_tag(url_external_img)%>
+                        <div class="card-body">
+                            <h4 class="card-title"><%= book.title %></h4>
+                            <div class="dropdown-divider"></div>
+                            <p class="card-text"> <%= book.description %></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">Autor: <%= book.author %></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
