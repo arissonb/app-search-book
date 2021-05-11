@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'admin/index'
   devise_for :users
 
-
+  resources :books
   root :to => "home#index"
 
   
