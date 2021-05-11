@@ -51,7 +51,7 @@ After you get all the [prerequisites](#prerequisites), simply execute the follow
 3. $ cd app-search-book # Go into the project folder
 4. $ gem install bundler # Bundler install
 5. $ bundle install # Install the gem dependencies
-5. $ yarn install --check-files # Install the yarn dependencies
+6. $ yarn install --check-files # Install the yarn dependencies
 7. $ rails db:create db:migrate db:seed # Database creation, together with tables and data population
 8. $ bundle exec rspec # Run the specs to see if everything is working fine
 ```
