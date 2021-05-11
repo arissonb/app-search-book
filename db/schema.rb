@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2021_05_10_213303) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "author"
+    t.string "title", limit: 100, null: false
+    t.string "description", limit: 260, null: false
+    t.string "author", limit: 100, null: false
     t.binary "image"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
