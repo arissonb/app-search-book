@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Book, :type => :model do
 
-  #Variavel temporario para validação de atributo, o error é acionado quando o valor é passado como nulo
+  #Variavel temporario para validação de atributo, o error é acionado quando o valor é passado como nulo ou excendendo o tamanho
   subject {
    described_class.new(title: "Anything",
-                       author: "Lorem ipsum",
-                       description: "Teste",
-                       status: "teste"
+                       author: "Desconhecido",
+                       description: "Lorem ipsum",
+                       status: "publicado"
                       )
  }
 
