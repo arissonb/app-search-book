@@ -1,21 +1,25 @@
 class BooksController < AdminController
 
+    #Action para visualizar todos os livros cadastrados
     def index
       @q = Book.ransack(params[:q])
       @books = @q.result(distinct: true)
       @status = Book.statuses
     end
-    
+
+    #Action para criação de um novo livro
     def new
       @status = Book.statuses
       @book = Book.new 
     end
-    
+
+    #Action de edição do livro
     def edit
       @status = Book.statuses
       @book = Book.find(params[:id]) 
     end
 
+    #Action de criação do livro
     def create
       @book = Book.new(book_params)
       respond_to do |format|
@@ -27,6 +31,7 @@ class BooksController < AdminController
       end
     end
 
+    #Action para atualizar um livro cadastrado
     def update
       @book = Book.find(params[:id]) 
       respond_to do |format|
@@ -38,10 +43,12 @@ class BooksController < AdminController
       end
     end
 
+    #Action para mostrar mais detalhes um livro cadastrado
     def show
       @book = Book.find(params[:id]) 
     end
-    
+
+    #Action para excluir um livro cadastrado
     def destroy
       @book = Book.find(params[:id])
       @book.destroy
