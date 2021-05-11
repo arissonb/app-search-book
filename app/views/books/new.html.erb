@@ -1,0 +1,52 @@
+<div class="container">
+  <br>
+  <div class="row flex-nowrap justify-content-between align-items-center">
+    <div class="col-4 pt-1">
+      <h6>Novo Livro</h6>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center">
+      <%= link_to "Voltar", books_path , class:"btn btn-outline-secondary"%>
+    </div>
+  </div>
+  <hr>
+
+  <div class="card">
+    <div class="card-body">
+      <%= form_for @book, as: :book, method: :post, html: { class: "row g-3 needs-validation" } do |form| %>
+
+      <div class="col-md-6">
+        <label for="validationCustom01" class="form-label">Titulo</label>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="col-md-6">
+        <label for="validationCustom01" class="form-label">Autor</label>
+        <%= form.text_field :author, class: "form-control" %>
+      </div>
+
+      <div class="col-md-12">
+        <label for="validationCustom01" class="form-label">Descrição</label>
+        <%= form.text_area(:description,rows: 3, class: 'form-control', maxlength: 260) %>
+      </div>
+
+      <div class="col-md-6">
+        <label for="formFileSm" class="form-label">Anexe uma imagem</label>
+        <%= form.file_field :image,class:"form-control", id:"formFileSm" %>
+      </div>
+
+      <div class="col-md-6">
+        <label for="validationCustom01" class="form-label">Status</label>
+        <%= form.select :status, @status.keys.map { |w| [w.humanize, w] }, { :prompt => "Selecione o status"},  { class: "form-select" } %>
+      </div>
+
+      <div class="col-12">
+        <%= form.button class: "btn btn-success" do %>
+        <i class="fa fa-check-circle"> Criar </i>
+        <% end %>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,95 @@
+<div class="container shadow p-3 mb-5 bg-body rounded">
+  <br>
+  <div class="row flex-nowrap justify-content-between align-items-center">
+    <div class="col-4 pt-1">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"> <%= link_to "Home", root_path %> </li>
+          <li class="breadcrumb-item active" aria-current="page">Livros</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center">
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <%= current_user.email %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <%= link_to "Sair", destroy_user_session_path, :method => :delete ,class:"dropdown-item"%>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="card">
+    <div class="card-body">
+
+      <form class="row g-3">
+        <%= search_form_for @q , url: books_path do |f| %>
+
+        <div class="col-sm-6">
+          <label for="staticEmail2" class="visually-hidden">Email</label>
+          <%= f.search_field :author_or_title_cont, class: "form-control", placeholder: "Pesquisar por autor ou titulo"%>
+        </div>
+
+        <div class="col-sm-2">
+          <%= f.select :status_eq, @status.to_a.map { |w| [w[0].humanize, w[1]] },{:include_blank => "Selecione o Status" } , { class: "form-select" } %>
+        </div>
+
+        <div class="col-sm-4">
+          <%= button_tag(class:"btn btn-primary mb-3") do %>
+          Filtrar
+          <% end %>
+          <%= link_to "Limpar", request.path , class:"btn btn-danger mb-3"%>
+        </div>
+
+        <% end %>
+      </form>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Autor</th>
+            <th>Titulo</th>
+            <th>Status</th>
+            <th class="text-center" nowrap>Ação</th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td><%= book.id %></td>
+            <td><%= book.author %></td>
+            <td><%= book.title %></td>
+            <td>
+              <% if book.publicado? %>
+              <span class="badge bg-primary"><%= book.status.humanize %></span>
+              <% else %>
+              <span class="badge bg-danger"><%= book.status.humanize %></span>
+              <% end %>
+            </td>
+            <td class="text-center" nowrap>
+              <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <%= link_to "Visualizar ", book_path(book.id) , class:"btn btn-outline-secondary"%>
+                <%= link_to "Editar ", edit_book_path(book.id) , class:"btn btn-outline-primary"%>
+                <%= link_to 'Excluir', book, :method => :delete, data: {:confirm => "Tem certeza que deseja excluir?" },class:"btn btn-outline-danger"  %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+
+      <hr>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <%= link_to "Novo Livro", new_book_path, class: "btn btn-primary"%>
+      </div>
+    </div>
+  </div>
+</div>

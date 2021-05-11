@@ -1,0 +1,12 @@
+<header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>Livros</strong>
+            </a>
+            <%= link_to books_path , class:"navbar-brand d-flex align-items-center" do  %>
+            <%= user_signed_in? ? "Sistema": "Login" %>
+            <% end %>
+        </div>
+    </div>
+</header>
