@@ -1,6 +1,6 @@
 <h1 align="center">
 
-[Zygo Tecnologia](https://github.com/zygotecnologia)
+[Zygo Tecnologia](https://github.com/zygotecnologia/zygo-programming-challenges/tree/master/developer/pleno)
     
 </h1>
 
