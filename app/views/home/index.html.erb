@@ -29,7 +29,7 @@
                 <% @books.each do |book| %>
                 <div class="col">
                     <div class="card shadow-sm ">
-                        <%= book.image.present? ? image_tag(book.image)  : image_tag(url_external_img)%>
+                        <%= book.image.present? ? image_tag(book.image, height: '300', width: '360')  : image_tag(url_external_img, height: '300', width: '360')%>
                         <div class="card-body">
                             <h4 class="card-title"><%= book.title %></h4>
                             <div class="dropdown-divider"></div>
