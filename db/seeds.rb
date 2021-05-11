@@ -6,8 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#Usuario do tipo admin para ter total autonomia do sistema
 User.create(name: 'Otavio', email: "otavio@hotmail.com", profile: 'admin', password: '123456', status: 'ativo')
+#Usuario do tipo comum que tem acesso apenas a pagina inicial
 User.create(name: 'Fernando', email: "fernando@hotmail.com", profile: 'comum', password: '123456', status: 'ativo')
+
 Book.create([
         { 
             title: 'Positiva',
