@@ -18,21 +18,23 @@ class BooksController < AdminController
 
     def create
       @book = Book.new(book_params)
-      if @book.save
-        flash[:success] = "Cadastro realizado  com sucesso"
-        redirect_to books_path
-      else
-        puts @books.errors.full_messages
+      respond_to do |format|
+        if @book.save
+          format.html { redirect_to books_path, success: 'Widget was successfully created.' }
+        else
+          format.json { render json: @book.errors, status: :unprocessable_entity }
+        end
       end
     end
 
     def update
       @book = Book.find(params[:id]) 
-      if @book.update(book_params)
-        flash[:success] = "Cadastro realizado  com sucesso"
-        redirect_to books_path
-      else
-        puts @book.errors.full_messages
+      respond_to do |format|
+        if @book.update(book_params)
+          format.html { redirect_to books_path, success: 'Widget was successfully created.' }
+        else
+          format.json { render json: @book.errors, status: :unprocessable_entity }
+        end
       end
     end
 
@@ -43,13 +45,12 @@ class BooksController < AdminController
     def destroy
       @book = Book.find(params[:id])
       @book.destroy
-      # flash[:info] = "Informações salvas com sucesso."
       redirect_to books_path
     end
     
     private
     def book_params
-        params.require(:book).permit(:title, :description,:author,:image,:status)
+      params.require(:book).permit(:title, :description,:author,:image,:status)
     end
     
 end
